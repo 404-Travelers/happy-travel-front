@@ -35,7 +35,6 @@ export default function tripForm({ id, initialData }) {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        // Front-end validation (similar to create form)
         if (form.country.length < 3 || form.country.length > 50) {
             alert("Country must be between 3 and 50 characters");
             return;
@@ -58,12 +57,10 @@ export default function tripForm({ id, initialData }) {
 
         try {
             if (id) {
-                // Update existing destination
                 await api.updateTrip(id, form);
                 alert("Destination updated successfully!");
                 router.push("/auth");
             } else {
-                // Create new destination
                 await api.createTrip(form);
                 alert("Destination created successfully!");
                 setForm({ country: "", city: "", description: "", image: "" });
