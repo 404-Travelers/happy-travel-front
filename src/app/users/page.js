@@ -18,6 +18,7 @@ export default function AdminUsersPage() {
 
     useEffect(() => {
         if (!isAuthenticated || role !== "[ROLE_ADMIN]") {
+            router.back()
             return;
         }
 
