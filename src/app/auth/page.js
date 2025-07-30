@@ -12,7 +12,7 @@ function Page() {
 
   useEffect(() => {
     api.getTripsOrderByAuthUser().then(res => {
-      setTripsAuth(res.data.destinations)
+      setTripsAuth(res.data)
     }).catch(error => {
       console.log(error);
     })
