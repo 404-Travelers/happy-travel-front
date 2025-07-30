@@ -2,7 +2,7 @@ import styles from './user.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import edit from '../../../../public/Edit-icon.svg';
-import del from '../../../../public/Delete-icon.svg';
+import DeleteUserButton from "../buttons/deleteUserButton";
 
 function User({ user }) {
     const { username, email, id } = user;
@@ -23,14 +23,7 @@ function User({ user }) {
                             alt='edit user'
                         />
                     </Link>
-                    <Link href={`/users/delete/${id}`}>
-                        <Image
-                            src={del}
-                            height={40}
-                            width={40}
-                            alt='delete user'
-                        />
-                    </Link>
+                    <DeleteUserButton id={id} userUsername={username}/>
                 </div>
             </div>
         </div>
