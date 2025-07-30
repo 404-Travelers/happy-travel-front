@@ -40,24 +40,3 @@ hr {
     border: 1px solid var(--red-color);
     margin: 20px 0;
 }
-
-.ctPage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 109px);
-    padding: 16px;
-    box-sizing: border-box;
-}
-
-.btCancel {
-    background-color: var(--blue-color);
-    color: white;
-    border: none;
-    padding: 10px 30px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-}
