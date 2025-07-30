@@ -13,8 +13,8 @@ export default function DeleteTripButton({ id, trip }) {
 
     const isOwnerOrAdmin =
         isAuthenticated &&
-        (username?.toLowerCase() === trip?.user?.username?.toLowerCase() ||
-            role?.toLowerCase() === "[role_admin]");
+        (username === trip.user.username ||
+            role.toLowerCase() === "[role_admin]");
 
     async function handleDelete() {
         if (!isOwnerOrAdmin)
@@ -25,9 +25,9 @@ export default function DeleteTripButton({ id, trip }) {
         if (!confirmed) return;
 
         try {
-            await api.deleteTrip(id);
-            alert("Destination deleted successfully!");
-            router.push("/auth");
+            const response = await api.deleteTrip(id);
+            alert(response.data);
+            router.back();
         } catch (err) {
             console.error(err);
             alert("Failed to delete destination.");
