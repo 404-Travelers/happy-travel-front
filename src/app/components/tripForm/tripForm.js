@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import styles from "./destinationForm.module.css";
+import styles from './tripForm.module.css'
 import { TripsService } from "@/services/tripsService";
 
-export default function tripForm({ id, initialData }) {
+export default function TripForm({ id, initialData }) {
     const api = TripsService();
     const [form, setForm] = useState({
         country: "",
