@@ -3,13 +3,12 @@
 import TripForm from '../components/tripForm/tripForm';
 import { useAuthContext } from '@/context/authContext';
 import { useState, useEffect } from "react";
-import styles from '@/app/globals.css'
 import { useRouter } from 'next/navigation';
 
 export default function Page() {
     const { isAuthenticated } = useAuthContext();
     const [error] = useState("");
-      const router = useRouter();
+    const router = useRouter();
 
     useEffect(() => {
         if (!isAuthenticated) {

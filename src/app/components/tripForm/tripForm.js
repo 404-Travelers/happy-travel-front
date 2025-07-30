@@ -1,10 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import styles from "./destinationForm.module.css";
+import styles from './tripForm.module.css'
 import { TripsService } from "@/services/tripsService";
+import { useRouter } from "next/navigation";
 
-export default function tripForm({ id, initialData }) {
+export default function TripForm({ id, initialData }) {
+
+    const router = useRouter();
     const api = TripsService();
     const [form, setForm] = useState({
         country: "",
@@ -14,9 +17,10 @@ export default function tripForm({ id, initialData }) {
     });
 
     const [loading, setLoading] = useState(Boolean(id && !initialData));
+    const [didInit, setDidInit] = useState(false);
 
     useEffect(() => {
-        if (initialData) {
+        if (initialData && !didInit) {
             setForm({
                 country: initialData.country || "",
                 city: initialData.city || "",
@@ -24,8 +28,10 @@ export default function tripForm({ id, initialData }) {
                 image: initialData.image || "",
             });
             setLoading(false);
+            setDidInit(true);
         }
-    }, [initialData]);
+    }, [initialData, didInit]);
+
 
     function handleChange(e) {
         const { name, value } = e.target;
