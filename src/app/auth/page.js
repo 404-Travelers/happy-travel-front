@@ -11,7 +11,7 @@ function Page() {
   const api = TripsService();
 
   useEffect(() => {
-    api.getTripsOrderByAuthUser().then(res => {
+    api.getMyTrips().then(res => {
       setTripsAuth(res.data)
     }).catch(error => {
       console.log(error);
