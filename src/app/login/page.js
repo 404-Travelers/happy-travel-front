@@ -26,7 +26,7 @@ export default function Page() {
             const response = await api.postLogin(loginData);
             const token = response.data.token;
             login(token);
-            router.push("/auth");
+            router.push("/");
         } catch (err) {
             console.error(err);
             setError(err.response?.data?.message || "Error de autenticación");
@@ -77,7 +77,10 @@ export default function Page() {
                             className={styles.inptLogin} />
                     </label>
 
-                    <span className={styles.sLogin}>{error}</span>
+                    <span className={styles.sLogin}>
+                        {typeof error === 'string' ? error : JSON.stringify(error)}
+                    </span>
+
 
                     <div className={styles.ctButtons}>
                         <button type="submit" className={`${styles.btLogin} ${styles.btAccept}`}>Aceptar</button>

@@ -87,7 +87,21 @@ export default function Page() {
                             className={styles.inptLogin} />
                     </label>
 
-                    <span className={styles.sLogin}>{error}</span>
+
+                    <span className={styles.sLogin}>
+                        {typeof error === "string" ? (
+                            error
+                        ) : error && typeof error === "object" ? (
+                            Object.entries(error).map(([field, message]) => (
+                                <div key={field} className={styles.errorField}>
+                                    <strong>{field}:</strong> {message}
+                                </div>
+                            ))
+                        ) : (
+                            "Error desconocido"
+                        )}
+                    </span>
+
 
                     <div className={styles.ctButtons}>
                         <button type="submit" className={`${styles.btLogin} ${styles.btAccept}`}>Aceptar</button>

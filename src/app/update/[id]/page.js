@@ -27,7 +27,7 @@ export default function UpdateTripPage({ params }) {
             });
     }, [id]);
 
-    const isOwner = isAuthenticated && username?.toLowerCase() === trip?.user?.username?.toLowerCase();
+    const isOwner = isAuthenticated && username === trip?.user?.username;
 
     useEffect(() => {
         if (trip && !isOwner) {

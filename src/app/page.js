@@ -9,7 +9,7 @@ import { useAuthContext } from '@/context/authContext';
 export default function Home() {
 
   const { isAuthenticated } = useAuthContext();
-  const [trips, setTrips] = useState('');
+  const [trips, setTrips] = useState(undefined);
 
   const api = TripsService();
 
