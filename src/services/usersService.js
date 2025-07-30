@@ -19,7 +19,13 @@ export const UsersService = () => {
         return response;
     };
 
+    const deleteUserAdmin = async (id) => {
+        const response = await axios.delete(`/admin/users/${id}`);
+        return response;
+    };
+
     return {
-        getUsers
+        getUsers,
+        deleteUserAdmin
     };
 };
