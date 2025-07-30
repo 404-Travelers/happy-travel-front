@@ -4,6 +4,7 @@
     align-items: center;
     border-bottom: 1px solid var(--blue-color);
     padding: 15px;
+    height: 109px;
 }
 
 .ctNav {
