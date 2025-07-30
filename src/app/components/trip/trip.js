@@ -11,8 +11,8 @@ function Trip({ trip }) {
   const { country, city, description, image, user: tripUser } = trip;
   const { isAuthenticated, username, role } = useAuthContext();
   const pathname = usePathname();
-  const isOwner = isAuthenticated && username?.toLowerCase() === tripUser?.username?.toLowerCase();
-  const isOwnerOrAdmin = isAuthenticated && ((username?.toLowerCase() === tripUser?.username?.toLowerCase() || role?.toLowerCase() === '[role_admin]'));
+  const isOwner = isAuthenticated && username === tripUser?.username;
+  const isOwnerOrAdmin = isAuthenticated && ((username === tripUser.username() || role?.toLowerCase() === '[role_admin]'));
   const showEdit = isOwner && pathname == '/auth';
   const showDelete = isOwnerOrAdmin && pathname == '/auth';
 
