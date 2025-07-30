@@ -26,7 +26,7 @@ export const TripsService = () => {
   };
 
     const getMyTrips = async () => {
-    const response = await axios.get(`/user/me/destinations`);
+    const response = await axios.get(`/users/me/destinations`);
     return response;
   };
 
