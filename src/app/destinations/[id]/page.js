@@ -65,6 +65,7 @@ export default function TripDetailPage({ params }) {
                 />
             </div>
             <p className={styles.description}>{trip.description}</p>
+            <p className={styles.username}>{trip.user.username}</p>
             <div>
                 {isAuthenticated && username === trip.user.username && (
                     <Link href={`/update/${trip.id}`}>
