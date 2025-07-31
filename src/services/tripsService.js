@@ -21,7 +21,12 @@ export const TripsService = () => {
   };
 
   const getTripsOrderByAuthUser = async () => {
-    const response = await axios.get(`/destinations/user`);
+    const response = await axios.get(`/destinations/auth`);
+    return response;
+  };
+
+    const getMyTrips = async () => {
+    const response = await axios.get(`/users/me/destinations`);
     return response;
   };
 
@@ -30,9 +35,29 @@ export const TripsService = () => {
     return response;
   };
 
+const createTrip = async (data) => {
+  const response = await axios.post('/destinations', data);
+  return response;
+};
+
+const updateTrip = async (id, data) => {
+  const response = await axios.put(`/destinations/${id}`, data);
+  return response;
+};
+
+const deleteTrip = async (id) => {
+  const response = await axios.delete(`/destinations/${id}`);
+  return response;
+};
+
+
   return {
     getTrips,
     getTripsOrderByAuthUser,
-    getTripById
+    getTripById,
+    getMyTrips,
+    createTrip,
+    updateTrip,
+    deleteTrip
   }
 }

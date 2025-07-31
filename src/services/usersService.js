@@ -15,11 +15,17 @@ axios.interceptors.request.use(function (config) {
 
 export const UsersService = () => {
     const getUsers = async () => {
-        const response = await axios.get('/users/all');
+        const response = await axios.get('/admin/users');
+        return response;
+    };
+
+    const deleteUserAdmin = async (id) => {
+        const response = await axios.delete(`/admin/users/${id}`);
         return response;
     };
 
     return {
-        getUsers
+        getUsers,
+        deleteUserAdmin
     };
 };

@@ -7,18 +7,16 @@ import { useAuthContext } from '@/context/authContext';
 import Link from 'next/link';
 import Image from "next/image";
 import edit from '../../../../public/Edit-icon.svg';
-import del from '../../../../public/Delete-icon.svg';
 import styles from './page.module.css';
+import DeleteTripButton from "@/app/components/buttons/deleteTripButton";
 
 export default function TripDetailPage({ params }) {
-    const { isAuthenticated, username } = useAuthContext();
+    const { isAuthenticated, username, role } = useAuthContext();
     const { id } = params;
     const [trip, setTrip] = useState(null);
     const [error, setError] = useState("");
     const router = useRouter();
     const api = TripsService();
-
-    
 
     useEffect(() => {
         if (!id) return;
@@ -30,7 +28,7 @@ export default function TripDetailPage({ params }) {
                 setError("Destino no encontrado");
                 setTrip(null);
             });
-            
+
     }, [id]);
 
     if (error) {
@@ -67,9 +65,9 @@ export default function TripDetailPage({ params }) {
                 />
             </div>
             <p className={styles.description}>{trip.description}</p>
-            {
-                isAuthenticated && username === trip.user.username &&
-                <div>
+            <p className={styles.username}>{trip.user.username}</p>
+            <div>
+                {isAuthenticated && username === trip.user.username && (
                     <Link href={`/update/${trip.id}`}>
                         <Image
                             src={edit}
@@ -78,16 +76,12 @@ export default function TripDetailPage({ params }) {
                             alt='edit destination'
                         />
                     </Link>
-                    <Link href={`/delete/${trip.id}`}>
-                        <Image
-                            src={del}
-                            height={40}
-                            width={40}
-                            alt='delete destination'
-                        />
-                    </Link>
-                </div>
-            }
+                )}
+
+                {(username === trip.user.username || role?.toLowerCase() === '[role_admin]') && (
+                    <DeleteTripButton id={trip.id} trip={trip} />
+                )}
+            </div>
         </div>
     );
 }
